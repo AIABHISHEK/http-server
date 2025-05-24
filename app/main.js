@@ -11,7 +11,7 @@ const response =
     '\r\n' +
     body;
 const server = net.createServer((socket) => {
-    socket.write(response);
+    // socket.write(response);
     socket.on("data", (data) => {
         console.log("Received data:", data.toString());
         // read url path
@@ -21,10 +21,24 @@ const server = net.createServer((socket) => {
         console.log("Method:", method);
         console.log("Path:", path);
         if (path === '/') {
-            const response = "HTTP/1.1 200 OK\r\n";
+            const body = 'Hello, world!';
+            const response =
+                'HTTP/1.1 200 OK\r\n' +
+                'Content-Type: text/plain\r\n' +
+                `Content-Length: ${body.length}\r\n` +
+                'Connection: close\r\n' +
+                '\r\n' +
+                body;
             socket.write(response);
-        } else if (path.length > 0) {
-            const response = "HTTP/1.1 404 Not Found\r\n";
+        } else {
+            const body = 'Not Found';
+            const response =
+                'HTTP/1.1 404 Not Found\r\n' +
+                'Content-Type: text/plain\r\n' +
+                `Content-Length: ${body.length}\r\n` +
+                'Connection: close\r\n' +
+                '\r\n' +
+                body;
             socket.write(response);
             console.log("No URL path found in the request.");
         }
