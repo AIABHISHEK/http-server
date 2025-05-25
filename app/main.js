@@ -1,8 +1,8 @@
 const net = require("net");
 const fs = require("fs");
-const { parseHttpRequest } = require("./util/parse_request.js");
+const { parseHttpRequest, buildResponse } = require("./util/parse_request.js");
 const PATH = require('path');
-// You can use print statements as follows for debugging, they'll be visible when running tests.
+
 console.log("Logs from your program will appear here!");
 const body = 'Hello, world!';
 const response =
@@ -33,28 +33,11 @@ const server = net.createServer((socket) => {
             body
         });
         console.log("Request header user-agent:", headers["user-agent"]);
-        const [requestLine] = request.split('\r\n'); 
-        // const [method, path, httpVersion] = requestLine.split(' ');
         console.log("Method:", method);
         console.log("Path:", path);
-
-        // 
-        // const fileData = Readfile("./app/index.html", (err, data) => {
-        //     if (err) {
-        //         console.error("Error reading file:", err);
-        //         return;
-        //     }
-        //     console.log("File data:", data.toString());
-        // });
         if (path === '/') {
             const body = 'Hello, world!';
-            const response =
-                'HTTP/1.1 200 OK\r\n' +
-                'Content-Type: text/plain\r\n' +
-                `Content-Length: ${body.length}\r\n` +
-                'Connection: close\r\n' +
-                '\r\n' +
-                body;
+            const response = buildResponse({statusCode:200, headers:{}, body}, headers);
             socket.write(response);
         }
         else if (path === '/files') {
