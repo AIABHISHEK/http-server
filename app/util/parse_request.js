@@ -73,7 +73,8 @@ export function parseHttpRequest(raw) {
     // Split lines
     const lines = headerPart.split('\r\n');
     const [requestLine, ...headerLines] = lines;
-
+    console.log("Request line:", requestLine);
+    console.log("Header lines:", headerLines);
     // Parse request line
     const [method, path, httpVersion] = requestLine.split(' ');
 
