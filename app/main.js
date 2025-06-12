@@ -1,6 +1,6 @@
 const net = require("net");
 const fs = require("fs");
-const { parseHttpRequest, buildResponse, endOfRequest } = require("./util/parse_request.js");
+const { parseHttpRequest, buildResponse, endOfRequest } = require("./util/util.js");
 const PATH = require('path');
 const { handleRoute } = require("./route/route.js");
 

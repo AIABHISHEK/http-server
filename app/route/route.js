@@ -2,7 +2,7 @@
 import PATH from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { buildResponse } from '../util/parse_request.js';
+import { buildResponse } from '../util/util.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = PATH.dirname(__filename);
