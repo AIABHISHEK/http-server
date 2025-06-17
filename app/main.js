@@ -5,14 +5,7 @@ const PATH = require('path');
 const { handleRoute } = require("./route/route.js");
 
 console.log("Logs from your program will appear here!");
-const body = 'Hello, world!';
-const response =
-    'HTTP/1.1 200 OK\r\n' +
-    'Content-Type: text/plain\r\n' +
-    `Content-Length: ${body.length}\r\n` +
-    // 'Connection: close\r\n' +
-    '\r\n' +
-    body;
+
     const server = net.createServer((socket) => {
         console.log("New connection established");
         // socket.write(response);
